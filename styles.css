@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    overflow: hidden;
+    background-color: #000;
+}
+
+#welcomeScreen, #chatScreen {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#welcomeContent {
+    position: absolute;
+    text-align: center;
+    color: #fff;
+}
+
+#getStarted {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#chatScreen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#chatBox {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+}
+
+#inputContainer {
+    display: flex;
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+}
+
+#inputText {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+}
+
+#sendButton {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 80%;
+}
+
+.user {
+    background-color: #007bff;
+    color: #fff;
+    align-self: flex-end;
+}
+
+.bot {
+    background-color: #f1f1f1;
+    color: #000;
+    align-self: flex-start;
+}
+

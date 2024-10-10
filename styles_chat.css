@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e5e5e5;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 600px;
+    height: 90vh;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.chat-input {
+    position: relative;
+    display: flex;
+    padding: 10px;
+    background-color: transparent;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 12px;
+    padding-right: 44px;
+    border: 1px solid #F4F4F4;
+    outline: none;
+    border-radius: 20px;
+    background-color: #F4F4F4;
+}
+
+.chat-input button {
+    width: 28px;
+    height: 28px;
+    background-color: #000;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    bottom: 50%;
+    transform: translateY(50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-input button:disabled {
+    cursor: default;
+    background-color: #00000036;
+}
+
+.message {
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    max-width: 80%;
+    word-wrap: break-word;
+    display: inline-block;
+}
+
+.message p {
+    margin: 0;
+}
+
+.message.user {
+    background-color: #F4F4F4;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+.message.bot {
+    color: black;
+    display: flex;
+    align-items: start;
+    gap: 16px;
+}
+
+.message.bot p {
+    margin-top: 10px;
+}
+
+.message.bot img {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.typing-indicator {
+    background-color: #F4F4F4;
+    color: black;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+    font-style: italic;
+}
+
+.message ul {
+    padding-left: 20px;
+}
+
+.message ol {
+    padding-left: 24px;
+}
+
+.message a {
+    color: #007bff;
+}
