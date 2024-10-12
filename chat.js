@@ -47,10 +47,18 @@ const mbtiDescriptions = {
 };
 
 const getChat = (message) => new Promise((resolve, reject) => {
-  const userMessage = message?.trim();
+  const userMessage = message?.replaceAll(" ", "");
   let botResponse = '';
 
-  if (awaitingResumeResponse) {
+  if (userMessage.toLowerCase() === "stop") {
+    awaitingResumeResponse = false;
+    awaitingInterviewResponse = false;
+    awaitingMBTIResponse = false;
+    awaitingJobResponse = false;
+    awaitingCareerDevelopmentResponse = false;
+    awaitingLearningDataResponse = false;
+    botResponse = '"이력서 작성 가이드", "직업 선택", "채용 공고 제공", "학습 자료 제공" 중 하나를 입력해주세요.<br>';
+  } else if (awaitingResumeResponse) {
       if (userMessage.toLowerCase() === '네' || userMessage.toLowerCase() === '예') {
           botResponse = `
           이력서 작성 가이드<br><br>
@@ -102,6 +110,7 @@ const getChat = (message) => new Promise((resolve, reject) => {
           이력서를 작성할 때 도움이 필요하면 언제든지 질문해주세요!<br>
           다른 기능이 필요하신가요? "네" "아니요"로 답변해주세요.<br>
           `;
+          
           awaitingResumeResponse = false;
       } else if (userMessage.toLowerCase() === '아니요') {
           botResponse = '"이력서 작성 가이드", "직업 선택", "채용 공고 제공", "학습 자료 제공" 중 하나를 입력해주세요.<br>';
@@ -201,17 +210,17 @@ const getChat = (message) => new Promise((resolve, reject) => {
           botResponse = '"네" 또는 "아니요"로 답변해주세요.<br>';
       }
   } else {
-      if (userMessage.includes('이력서 작성 가이드')) {
-          botResponse = '이력서 작성 가이드에 대해 궁금하신가요?<br> 네, 아니요로 답변해주세요.<br>';
+      if (userMessage.includes('이력서작성가이드')) {
+          botResponse = '이력서 작성 가이드에 대해 궁금하신가요?<br> "네", "아니요"로 답변해주세요.<br>';
           awaitingResumeResponse = true;
-      } else if (userMessage.includes('직업 선택')) {
+      } else if (userMessage.includes('직업선택')) {
           botResponse = 'MBTI를 입력해주세요.<br>';
           awaitingMBTIResponse = true;
-      } else if (userMessage.includes('채용 공고 제공')) {
+      } else if (userMessage.includes('채용공고제공')) {
           botResponse = '당신이 희망하는 직무는 무엇인가요?<br>';
           awaitingJobResponse = true;
-      } else if (userMessage.includes('학습 자료 제공')) {
-          botResponse = '취업 지원과 합격에 관한 자료가 필요하신가요?<br> 네, 아니요로 답변해주세요.<br>';
+      } else if (userMessage.includes('학습자료제공')) {
+          botResponse = '취업 지원과 합격에 관한 자료가 필요하신가요?<br> "네", "아니요"로 답변해주세요.<br>';
           awaitingLearningDataResponse = true;
       } else {
           botResponse = '"이력서 작성 가이드", "직업 선택", "채용 공고 제공", "학습 자료 제공" 중 하나를 입력해주세요.<br>';

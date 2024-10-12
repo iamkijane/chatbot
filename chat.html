@@ -20,38 +20,233 @@
             <button disabled id="sendButton">
                 <img src="./public/arrow-up.png" alt="send button">
             </button>
+            <button id="stopButton">
+                <img src="./public/rectangle.png" alt="stop button">
+            </button>
         </div>
     </div>
     <script>
         const chatBox = document.getElementById('chatBox');
         const inputText = document.getElementById('inputText');
         const sendButton = document.getElementById('sendButton');
-        const attachButton = document.getElementById('attachButton');
-        const fileInput = document.getElementById('fileInput');
+        const stopButton = document.getElementById('stopButton');
+        let isBotTyping = false;
+        let botTypingTimeout;
 
         inputText.addEventListener('input', () => {
             sendButton.disabled = inputText.value.trim() === '';
         });
 
-        function addMessage(message, sender) {
-            const messageElement = document.createElement('div');
-            messageElement.className = 'message ' + sender;
+        sendButton.addEventListener('click', () => {
+            const message = inputText.value.trim();
+            if (message) {
+                addUserMessage(message);
+                inputText.value = '';
 
-            if (sender === 'bot') {
-                const botImage = document.createElement('img');
-                botImage.src = './public/bot.png';
-                botImage.alt = 'Bot';
-                messageElement.appendChild(botImage);
+                showTypingIndicator();
+
+                getChat(message)
+                    .then(response => {
+                        hideTypingIndicator();
+                        addBotMessage(response);
+                    })
+                    .catch(error => {
+                        hideTypingIndicator();
+                        addBotMessage('서버와의 통신 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                        console.error('Fetch error:', error);
+                    });
             }
+            sendButton.disabled = inputText.value.trim() === '';
+        });
+
+        inputText.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !isBotTyping) {
+                if (isBotTyping === false) {
+                    sendButton.click();
+                }
+            }
+        });
+
+        stopButton.addEventListener('click', () => {
+            setBotTypingStop();
+            hideTypingIndicator();
+            if (botTypingTimeout) clearTimeout(botTypingTimeout);
+
+            getChat("stop")
+                .then(response => {
+                    hideTypingIndicator();
+                    addBotMessage(response);
+                })
+                .catch(error => {
+                    hideTypingIndicator();
+                    addBotMessage('서버와의 통신 중 오류가 발생했습니다. 다시 시도해 주세요.');
+                    console.error('Fetch error:', error);
+                });
+        });
+
+        function addUserMessage(message) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message user';
 
             const messageText = document.createElement('p');
             messageText.innerHTML = message;
 
             messageElement.appendChild(messageText);
-
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight;
         }
+
+        function addBotMessage(message) {
+            setBotTypingStart();
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message bot';
+
+            const botImage = document.createElement('img');
+            botImage.src = './public/bot.png';
+            botImage.alt = 'Bot';
+            messageElement.appendChild(botImage);
+
+            const messageText = document.createElement('p');
+            messageElement.appendChild(messageText);
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = message;
+            const messageParts = Array.from(tempDiv.childNodes);
+
+            let typingIndex = 0; // 현재 처리 중인 메시지 부분 인덱스
+
+            function typeNext() {
+                if (typingIndex < messageParts.length) {
+                    const part = messageParts[typingIndex];
+
+                    if (part.nodeType === Node.TEXT_NODE) {
+                        const text = part.textContent;
+                        let textIndex = 0;
+
+                        function typeText() {
+                            if (textIndex < text.length) {
+                                messageText.innerHTML += text.charAt(textIndex);
+                                textIndex++;
+                                chatBox.scrollTop = chatBox.scrollHeight;
+                                botTypingTimeout = setTimeout(typeText, 50);
+                            } else {
+                                typingIndex++;
+                                typeNext(); // 다음 메시지 부분 처리
+                            }
+                        }
+                        typeText();
+                    } else if (part.nodeType === Node.ELEMENT_NODE) {
+                        const elementClone = part.cloneNode();
+                        messageText.appendChild(elementClone);
+                        const childNodes = Array.from(part.childNodes);
+                        let childIndex = 0;
+
+                        function typeChild() {
+                            if (childIndex < childNodes.length) {
+                                const childPart = childNodes[childIndex];
+
+                                if (childPart.nodeType === Node.TEXT_NODE) {
+                                    const childText = childPart.textContent;
+                                    let childTextIndex = 0;
+
+                                    function typeChildText() {
+                                        if (childTextIndex < childText.length) {
+                                            elementClone.innerHTML += childText.charAt(childTextIndex);
+                                            childTextIndex++;
+                                            chatBox.scrollTop = chatBox.scrollHeight;
+                                            botTypingTimeout = setTimeout(typeChildText, 50);
+                                        } else {
+                                            childIndex++;
+                                            typeChild(); // 다음 자식 처리
+                                        }
+                                    }
+                                    typeChildText();
+                                } else if (childPart.nodeType === Node.ELEMENT_NODE) {
+                                    const innerElementClone = childPart.cloneNode();
+                                    elementClone.appendChild(innerElementClone);
+                                    const innerChildNodes = Array.from(childPart.childNodes);
+                                    let innerChildIndex = 0;
+
+                                    function typeInnerChild() {
+                                        if (innerChildIndex < innerChildNodes.length) {
+                                            const innerChildPart = innerChildNodes[innerChildIndex];
+
+                                            if (innerChildPart.nodeType === Node.TEXT_NODE) {
+                                                const innerChildText = innerChildPart.textContent;
+                                                let innerChildTextIndex = 0;
+
+                                                function typeInnerChildText() {
+                                                    if (innerChildTextIndex < innerChildText.length) {
+                                                        innerElementClone.innerHTML += innerChildText.charAt(innerChildTextIndex);
+                                                        innerChildTextIndex++;
+                                                        chatBox.scrollTop = chatBox.scrollHeight;
+                                                        botTypingTimeout = setTimeout(typeInnerChildText, 50);
+                                                    } else {
+                                                        innerChildIndex++;
+                                                        typeInnerChild(); // 다음 깊은 자식 처리
+                                                    }
+                                                }
+                                                typeInnerChildText();
+                                            } else if (innerChildPart.nodeType === Node.ELEMENT_NODE) {
+                                                // 더 깊은 중첩 처리
+                                                const deeperElementClone = innerChildPart.cloneNode();
+                                                innerElementClone.appendChild(deeperElementClone);
+                                                const deeperChildNodes = Array.from(innerChildPart.childNodes);
+                                                let deeperChildIndex = 0;
+
+                                                function typeDeeperChild() {
+                                                    if (deeperChildIndex < deeperChildNodes.length) {
+                                                        const deeperChildPart = deeperChildNodes[deeperChildIndex];
+
+                                                        if (deeperChildPart.nodeType === Node.TEXT_NODE) {
+                                                            const deeperChildText = deeperChildPart.textContent;
+                                                            let deeperChildTextIndex = 0;
+
+                                                            function typeDeeperChildText() {
+                                                                if (deeperChildTextIndex < deeperChildText.length) {
+                                                                    deeperElementClone.innerHTML += deeperChildText.charAt(deeperChildTextIndex);
+                                                                    deeperChildTextIndex++;
+                                                                    chatBox.scrollTop = chatBox.scrollHeight;
+                                                                    botTypingTimeout = setTimeout(typeDeeperChildText, 50);
+                                                                } else {
+                                                                    deeperChildIndex++;
+                                                                    typeDeeperChild(); // 다음 깊은 자식 처리
+                                                                }
+                                                            }
+                                                            typeDeeperChildText();
+                                                        } else {
+                                                            // 여기에 필요한 추가 처리 구현
+                                                        }
+                                                    } else {
+                                                        innerChildIndex++;
+                                                        typeInnerChild(); // 다음 깊은 자식 처리
+                                                    }
+                                                }
+                                                typeDeeperChild();
+                                            }
+                                        } else {
+                                            childIndex++;
+                                            typeChild(); // 다음 자식 처리
+                                        }
+                                    }
+                                    typeInnerChild();
+                                }
+                            } else {
+                                typingIndex++;
+                                typeNext(); // 다음 메시지 부분 처리
+                            }
+                        }
+                        typeChild();
+                    }
+                } else {
+                    setBotTypingStop();
+                }
+            }
+            typeNext();
+        }
+
 
         function showTypingIndicator() {
             const typingIndicator = document.createElement('div');
@@ -69,54 +264,22 @@
             }
         }
 
+        function setBotTypingStart() {
+            isBotTyping = true;
+            sendButton.style.display = 'none';
+            stopButton.style.display = 'flex';
+        }
+
+        function setBotTypingStop() {
+            isBotTyping = false;
+            sendButton.style.display = 'flex';
+            stopButton.style.display = 'none';
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            addMessage('취업 지원 챗봇에 오신 것을 환영합니다!', 'bot');
-            addMessage('"이력서 작성 가이드", "직업 선택", "채용 공고 제공", "학습 자료 제공" 중 하나를 입력해 주세요.', 'bot');
+            addBotMessage('취업 지원 챗봇에 오신 것을 환영합니다! <br><br>"이력서 작성 가이드", "직업 선택", "채용 공고 제공", "학습 자료 제공" 중 하나를 입력해 주세요.');
         });
 
-        sendButton.addEventListener('click', () => {
-            const message = inputText.value.trim();
-            if (message) {
-                addMessage(message, 'user');
-                inputText.value = '';
-
-                showTypingIndicator();
-
-                getChat(message)
-                    .then(response => {
-                        hideTypingIndicator();
-                        addMessage(response, 'bot');
-                    })
-                    .catch(error => {
-                        hideTypingIndicator();
-                        addMessage('서버와의 통신 중 오류가 발생했습니다. 다시 시도해 주세요.', 'bot');
-                        console.error('Fetch error:', error);
-                    });
-            }
-            sendButton.disabled = inputText.value.trim() === '';
-        });
-
-        inputText.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                sendButton.click();
-            }
-        });
-
-        // Event listener for the attach button
-        attachButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            fileInput.click();
-        });
-
-        // Event listener for file input change
-        fileInput.addEventListener('change', () => {
-            const file = fileInput.files[0];
-            if (file) {
-                addMessage(`선택된 파일: ${file.name}`, 'user');
-            } else {
-                addMessage('파일을 선택하지 않았습니다.', 'bot');
-            }
-        });
     </script>
 </body>
 
