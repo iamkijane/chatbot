@@ -27,6 +27,9 @@
         </div>
     </div>
     <script>
+        // 타이핑 속도
+        const typingSpeed = 40;
+
         const chatBox = document.getElementById('chatBox');
         const inputText = document.getElementById('inputText');
         const sendButton = document.getElementById('sendButton');
@@ -131,7 +134,7 @@
                                 messageText.innerHTML += text.charAt(textIndex);
                                 textIndex++;
                                 chatBox.scrollTop = chatBox.scrollHeight;
-                                botTypingTimeout = setTimeout(typeText, 50);
+                                botTypingTimeout = setTimeout(typeText, typingSpeed);
                             } else {
                                 typingIndex++;
                                 typeNext(); // 다음 메시지 부분 처리
@@ -157,7 +160,7 @@
                                             elementClone.innerHTML += childText.charAt(childTextIndex);
                                             childTextIndex++;
                                             chatBox.scrollTop = chatBox.scrollHeight;
-                                            botTypingTimeout = setTimeout(typeChildText, 50);
+                                            botTypingTimeout = setTimeout(typeChildText, typingSpeed);
                                         } else {
                                             childIndex++;
                                             typeChild(); // 다음 자식 처리
@@ -183,7 +186,7 @@
                                                         innerElementClone.innerHTML += innerChildText.charAt(innerChildTextIndex);
                                                         innerChildTextIndex++;
                                                         chatBox.scrollTop = chatBox.scrollHeight;
-                                                        botTypingTimeout = setTimeout(typeInnerChildText, 50);
+                                                        botTypingTimeout = setTimeout(typeInnerChildText, typingSpeed);
                                                     } else {
                                                         innerChildIndex++;
                                                         typeInnerChild(); // 다음 깊은 자식 처리
@@ -210,7 +213,7 @@
                                                                     deeperElementClone.innerHTML += deeperChildText.charAt(deeperChildTextIndex);
                                                                     deeperChildTextIndex++;
                                                                     chatBox.scrollTop = chatBox.scrollHeight;
-                                                                    botTypingTimeout = setTimeout(typeDeeperChildText, 50);
+                                                                    botTypingTimeout = setTimeout(typeDeeperChildText, typingSpeed);
                                                                 } else {
                                                                     deeperChildIndex++;
                                                                     typeDeeperChild(); // 다음 깊은 자식 처리
