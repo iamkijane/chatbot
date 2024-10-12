@@ -57,8 +57,11 @@ const getChat = (message) => new Promise((resolve, reject) => {
     awaitingJobResponse = false;
     awaitingCareerDevelopmentResponse = false;
     awaitingLearningDataResponse = false;
-    botResponse = '"이력서 작성 가이드", "직업 선택", "채용 공고 제공", "학습 자료 제공" 중 하나를 입력해주세요.<br>';
-  } else if (awaitingResumeResponse) {
+    resolve('"이력서 작성 가이드", "직업 선택", "채용 공고 제공", "학습 자료 제공" 중 하나를 입력해주세요.<br>');
+    return;
+  } 
+  
+  if (awaitingResumeResponse) {
       if (userMessage.toLowerCase() === '네' || userMessage.toLowerCase() === '예') {
           botResponse = `
           이력서 작성 가이드<br><br>
