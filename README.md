@@ -1,4 +1,4 @@
-#Employment Chatbot
+# Employment Chatbot
 #프로젝트 개요
 Employment Chatbot 프로젝트는 사용자가 챗봇과 실시간으로 상호작용할 수 있는 웹 기반 애플리케이션입니다.
 사용자는 채팅 인터페이스에 주어진 질문을 입력하면 챗봇이 실시간으로 답변을 제공합니다.
