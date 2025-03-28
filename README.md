@@ -14,7 +14,7 @@
 - CSS : 스타일링 및 반응형 디자인
 - JavaScript : 클라이언트 측 로직
 
-## Future Directions
+## To be developed
 - ### 1. 자연어 처리 (NLP) 통합
 - 챗봇의 지능을 향상시키기 위해 자연어 처리 API를 통합, Dialogflow 또는 IBM Watson과 같은 NLP 서비스를 활용하여 사용자의 의도를 파악하고 더 자연스러운 대화를 구현
 - ### 2. 파이썬 백엔드 추가
