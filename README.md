@@ -10,9 +10,7 @@
 - 타이핑 인디케이터 : 챗봇이 메시지를 처리하는 중에는 타이핑 인디케이터 표시
 
 ## Tech Stack
-- HTML : 구조적인 웹 페이지 구현
-- CSS : 스타일링 및 반응형 디자인
-- JavaScript : 클라이언트 측 로직
+<img src="https://img.shields.io/badge/Html-007396?style=flat-square&logo=Html&logoColor=white"/> <img src="https://img.shields.io/badge/CSS-4479A1?style=flat-square&logo=CSS&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-FF6C37?style=flat-square&logo=JavaScript&logoColor=white"/>
 
 ## To be developed
 #### 1. 자연어 처리 (NLP) 통합
