@@ -4,7 +4,7 @@
 - 사용자는 채팅 인터페이스에 주어진 질문을 입력하면 챗봇이 실시간으로 답변을 제공합니다.
 
 ## Tech Stack
-<img src="https://img.shields.io/badge/Html-007396?style=flat-square&logo=Html&logoColor=white"/> <img src="https://img.shields.io/badge/CSS-4479A1?style=flat-square&logo=CSS&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-FF6C37?style=flat-square&logo=JavaScript&logoColor=white"/>
+<img src="https://img.shields.io/badge/HTML-007396?style=flat-square&logo=HTML&logoColor=white"/> <img src="https://img.shields.io/badge/CSS-4479A1?style=flat-square&logo=CSS&logoColor=white"/> <img src="https://img.shields.io/badge/JavaScript-FF6C37?style=flat-square&logo=JavaScript&logoColor=white"/>
 
 ## Main Features
 - 랜딩 페이지 : "Get started" 버튼을 누르면 채팅 인터페이스로 이동할 수 있는 소개 화면 표시
