@@ -4,7 +4,7 @@
 > 이력서 작성 가이드, 직업 추천, 채용 공고 탐색, 학습 자료 안내 등 취업 관련 기능을 제공합니다.
 
 
-https://github.com/user-attachments/assets/677697ec-75be-4de5-8e1a-6c784bc108e9
+![화면 기록 2025-05-30 오후 12 19 26](https://github.com/user-attachments/assets/b894869c-374e-4aea-8b28-e79e9992b97c)
 
 
 
@@ -12,6 +12,7 @@ https://github.com/user-attachments/assets/677697ec-75be-4de5-8e1a-6c784bc108e9
 - 랜딩 페이지 : "Get started" 버튼을 누르면 채팅 인터페이스로 이동할 수 있는 소개 화면 표시
 - 채팅 인터페이스 : 사용자가 메시지를 입력하면 챗봇이 실시간으로 반응
 - 모바일 반응형 : 화면 크기에 맞춰 레이아웃이 조정됨
+
 - 타이핑 인디케이터 : 챗봇이 메시지를 처리하는 중에는 타이핑 인디케이터 표시
 
 ## 향후 개발 예정 기능
