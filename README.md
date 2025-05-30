@@ -13,4 +13,4 @@
 
 ## 설치 및 실행 방법
 ```bash
-git clone https://github.com/your-username/employment-chatbot.git
+git clone https://github.com/your-username/chatbot.git
