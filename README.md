@@ -3,8 +3,9 @@
 > 이 프로젝트는 사용자의 취업 준비 과정을 돕기 위한 웹 기반 챗봇입니다.
 > 이력서 작성 가이드, 직업 추천, 채용 공고 탐색, 학습 자료 안내 등 취업 관련 기능을 제공합니다.
 
+![Live Demo](https://github.com/user-attachments/assets/293c7055-bc0e-4b5f-9277-e850c97aa686)
 
-![화면 기록 2025-05-30 오후 12 19 26](https://github.com/user-attachments/assets/b894869c-374e-4aea-8b28-e79e9992b97c)
+
 
 
 
