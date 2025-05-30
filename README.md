@@ -5,12 +5,6 @@
 
 ![화면 기록 2025-05-30 오후 12 27 05](https://github.com/user-attachments/assets/dd0109f2-dc0d-46f8-bfb2-3cc79e4be427)
 
-## 향후 개발 예정 기능
-#### 1. 자연어 처리 (NLP) 통합
-- 챗봇의 지능을 향상시키기 위해 자연어 처리 API를 통합, Dialogflow 또는 IBM Watson과 같은 NLP 서비스를 활용하여 사용자의 의도를 파악하고 자연스러운 대화를 구현
-#### 2. 파이썬 백엔드 추가
-- 서버 측에서 복잡한 데이터 처리가 필요한 경우, Flask 또는 Django를 사용하여 Python 백엔드를 추가
-
 ## 설치 및 실행 방법
 ```bash
 git clone https://github.com/your-username/chatbot.git
