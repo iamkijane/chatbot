@@ -5,7 +5,8 @@
 
 
 
-![화면 기록 2025-05-30 오후 12 19 26](https://github.com/user-attachments/assets/d79c1998-662a-4770-a26e-716c78788f8a)
+![화면 기록 2025-05-30 오후 12 27 05](https://github.com/user-attachments/assets/dd0109f2-dc0d-46f8-bfb2-3cc79e4be427)
+
 
 
 
