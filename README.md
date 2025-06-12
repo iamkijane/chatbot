@@ -7,4 +7,4 @@
 
 ## 설치 및 실행 방법
 ```bash
-git clone https://github.com/kijmane/chatbot.git
+git clone https://github.com/iamkijane/chatbot.git
