@@ -1,0 +1,36 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+ENV/
+env/
+
+# Editor config
+.vscode/
+.idea/
+*.swp
+
+# macOS
+.DS_Store
+
+# dotenv
+.env
+
+# Logs
+*.log
+
+# OS-level hidden files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Flask
+instance/
+*.sqlite3
+
+# prompt
+prompts.py

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employment Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+<div id="welcomeScreen">
+    <img src="{{ url_for('static', filename='img/background.png') }}" id="background" alt="background">
+    <div id="welcomeContent">
+        <a href="{{ url_for('home') }}" id="getStarted">
+            <img src="{{ url_for('static', filename='img/Get Started.png') }}" alt="Get Started" style="display: block; margin: 0 auto;">
+        </a>
+    </div>
+</div>
+</body>
+
+</html>
