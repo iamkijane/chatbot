@@ -22,3 +22,8 @@ OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 python3 app.py
 ```
+
+## 사용 예시
+- 직업 선택 → 예: “ISTP에게 어울리는 직무”
+- 채용 공고 제공 → 예: “백엔드 개발자 채용 공고 보여줘”
+- 학습 자료 제공 → 예: “프론트엔드 개발자 준비하려면 뭘 공부해야해?”
