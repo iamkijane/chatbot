@@ -1,5 +1,5 @@
 ![License](https://img.shields.io/badge/License-MIT-blue)
-# Employment ChatBot
+# ChatBot
 > 이 프로젝트는 OpenAI API를 연동한 취업 컨설팅 챗봇입니다.
 > 커스텀한 프롬프트를 기반으로 다양한 취업 컨설팅 기능을 제공합니다.
 
