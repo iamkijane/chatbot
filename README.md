@@ -2,7 +2,7 @@
 # ChatBot
 > 이 프로젝트는 OpenAI API를 연동한 챗봇입니다.
 
-// ![화면 기록 2025-05-30 오후 12 27 05](https://github.com/user-attachments/assets/dd0109f2-dc0d-46f8-bfb2-3cc79e4be427)
+//![화면 기록 2025-05-30 오후 12 27 05](https://github.com/user-attachments/assets/dd0109f2-dc0d-46f8-bfb2-3cc79e4be427)
 
 ## 실행 방법
 ### 1. 패키지 설치
